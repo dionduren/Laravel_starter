@@ -1,8 +1,12 @@
 <?php
 //untuk [DataController::class, 'index']
+
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DataController;
 //untuk datas:all();
 use App\Models\Datas;
+//untuk category
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,10 +58,19 @@ Route::get('/user', [DataController::class, 'index']);
 // Halaman single post - tutorial unpas
 // Route::get('/user/{slug}', [DataController::class, 'show']);
 //----
-// mengirimkan rute '/{data:slug} ke controller dengan fungsi show
+// mengirimkan rute '/{data:slug} ke controller(Data) dengan fungsi show
 Route::get('/user/{data:slug}', [DataController::class, 'show']);
 
+Route::get('/categories', [CategoryController::class, 'index']);
 
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('category', [
+        'title' => $category->name,
+        'datax' => $category->datas,
+        'category' => $category->name
+    ]);
+});
 
 /* Route::get('user/{slug}', function ($slug) {
     return view(
