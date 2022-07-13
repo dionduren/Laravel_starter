@@ -52,7 +52,12 @@ Route::get('/user', function () {
 Route::get('/user', [DataController::class, 'index']);
 
 // Halaman single post - tutorial unpas
-Route::get('user/{slug}', [DataController::class, 'show']);
+// Route::get('/user/{slug}', [DataController::class, 'show']);
+//----
+// mengirimkan rute '/{data:slug} ke controller dengan fungsi show
+Route::get('/user/{data:slug}', [DataController::class, 'show']);
+
+
 
 /* Route::get('user/{slug}', function ($slug) {
     return view(

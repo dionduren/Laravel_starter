@@ -9,5 +9,6 @@ class Datas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'excerpt', 'body'];
+    // protected $fillable = ['title', 'excerpt', 'body'];
+    // protected $guarded = ['id'];
 }
