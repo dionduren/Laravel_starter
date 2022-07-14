@@ -13,7 +13,8 @@ class DataController extends Controller
     {
         return view('list', [
             "title" => "Data",
-            "datax"  => Datas::with(['author', 'category'])->latest()->get()
+            // "datax"  => Datas::with(['author', 'category'])->latest()->get()
+            "datax"  => Datas::latest()->get()
         ]);
     }
 

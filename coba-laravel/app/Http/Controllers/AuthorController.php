@@ -19,7 +19,7 @@ class AuthorController extends Controller
     {
         return view('list', [
             'title' => 'Author',
-            'datax' => $author->datas->load('category', 'author'),
+            'datax' => $author->datas->load('category', 'author')
         ]);
     }
 }
