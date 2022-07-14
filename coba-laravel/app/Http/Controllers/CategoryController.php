@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// untuk menangani request, form, dll
 use Illuminate\Http\Request;
-// menggunakan data dari Model Datas
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -12,23 +10,17 @@ class CategoryController extends Controller
     // method controller yang digunakan/dipanggil di web.php
     public function index()
     {
-        return view('categorylist', [
+        return view('filter', [
             "title" => "Category",
-            "categoryx"  => Category::all()
+            "datax"  => Category::all()
         ]);
     }
 
-    //Menggunakan model 'Datas', otomatis melakukan pencarian sesuai dengan data yang dikirimkan dari routes
-    // variabel yang dikirim berasal dari potongan site di routes '/user/{data:slug}'
-    public function show(Category $categoryx)
+    public function show(Category $category)
     {
-        return view(
-            'data',
-            [
-                "title" => "Single Category",
-                // "data" => Datas::find($slug),
-                "categoryx" => $categoryx
-            ]
-        );
+        return view('list', [
+            'title' => 'Category',
+            'datax' => $category->datas
+        ]);
     }
 }

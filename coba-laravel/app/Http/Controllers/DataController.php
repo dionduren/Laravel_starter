@@ -9,25 +9,20 @@ use App\Models\Datas;
 
 class DataController extends Controller
 {
-    // method controller yang digunakan/dipanggil di web.php
     public function index()
     {
-        return view('User', [
+        return view('list', [
             "title" => "Data",
-            // "data"  => Datas::all()
             "datax"  => Datas::latest()->get()
         ]);
     }
 
-    //Menggunakan model 'Datas', otomatis melakukan pencarian sesuai dengan data yang dikirimkan dari routes
-    // variabel yang dikirim berasal dari potongan site di routes '/user/{data:slug}'
     public function show(Datas $data)
     {
         return view(
-            'data',
+            'focus',
             [
-                "title" => "Single Data",
-                // "data" => Datas::find($slug),
+                "title" => "Data",
                 "datax" => $data
             ]
         );

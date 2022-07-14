@@ -19,7 +19,7 @@
           <a class="nav-link {{ ($title === "Category") ? 'active' : '' }}" href="/categories">Category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($title === "Author") ? 'active' : '' }}" href="/author">Author</a>
+          <a class="nav-link {{ ($title === "Author") ? 'active' : '' }}" href="/authors">Author</a>
         </li>
       </ul>
     </div>

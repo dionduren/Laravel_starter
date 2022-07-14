@@ -1,6 +1,7 @@
 <?php
 //untuk [DataController::class, 'index']
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DataController;
 //untuk datas:all();
@@ -25,9 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get(
-    // path website yang dituju
     '/',
-    // ini adalah closures
     function () {
         return view('home', [
             "title" => "Home"
@@ -45,50 +44,11 @@ Route::get('/admin', function () {
     ]);
 });
 
-/*
-Route::get('/user', function () {
-    return view('User', [
-        "title" => "User",
-        "data"  => Datas::all()
-    ]);
-});
-*/
-
-//Halaman Post - tutorial upnas
 Route::get('/data', [DataController::class, 'index']);
-
-// Halaman single post - tutorial unpas
-// Route::get('/user/{slug}', [DataController::class, 'show']);
-//----
-// mengirimkan rute '/{data:slug} ke controller(Data) dengan fungsi show
 Route::get('/data/{data:slug}', [DataController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
 
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('category', [
-        'title' => 'category',
-        'datax' => $category->datas,
-        'category' => $category->name
-    ]);
-});
-
-Route::get('/authors/{author:username}', function (User $author) {
-
-    return view('category', [
-        'title' => 'datalist',
-        'datax' => $author->datas,
-        'category' => $author->name
-    ]);
-});
-
-/* Route::get('user/{slug}', function ($slug) {
-    return view(
-        'data',
-        [
-            "title" => "Single Data",
-            "data" => Datas::find($slug)
-        ]
-    );
-});
-*/
+Route::get('/authors', [AuthorController::class, 'index']);
+Route::get('/authors/{author:username}', [AuthorController::class, 'show']);
