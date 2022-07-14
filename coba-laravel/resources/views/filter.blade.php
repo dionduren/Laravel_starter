@@ -1,3 +1,5 @@
+{{-- @dd($datax) --}}
+
 @extends('layouts.main')
 
 @section('container')

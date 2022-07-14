@@ -20,7 +20,7 @@ class CategoryController extends Controller
     {
         return view('list', [
             'title' => 'Category',
-            'datax' => $category->datas
+            'datax' => $category->datas->load('category', 'author')
         ]);
     }
 }
