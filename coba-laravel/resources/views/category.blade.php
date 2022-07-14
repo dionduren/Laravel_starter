@@ -8,7 +8,7 @@
     @foreach ($datax as $file)
         <article class="mb-10">
             {{-- mengganti link menjadi slug  --}}
-            <h2><a href="/user/{{ $file->slug }}"> {{ $file->title }}</a></h2>
+            <h2><a href="/user/{{ $file->slug }}" class="text-decoration-none"> {{ $file->title }}</a></h2>
             <h5> {{ $file->excerpt }}</h5>
         </article>
         <br>

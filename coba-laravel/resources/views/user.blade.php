@@ -10,7 +10,7 @@
             {{-- mengganti link menjadi slug  --}}
             <h2><a href="/user/{{ $file->slug }}" class="text-decoration-none"> {{ $file->title }}</a></h2>
 
-            <h6>By Dion Alamsah in <a href="/categories/{{ $file->category->slug }}" class="text-decoration-none">{{ $file->category->name }}</a> </h6>
+            <h6>By <a href="#" class="text-decoration-none">{{ $file->user->name }}</a> in <a href="/categories/{{ $file->category->slug }}" class="text-decoration-none">{{ $file->category->name }}</a> </h6>
 
             <p> {{ $file->excerpt }}</p>
 
