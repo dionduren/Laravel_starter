@@ -1,13 +1,13 @@
-{{-- @dd($data) --}}
+{{-- @dd($datax) --}}
 
 @extends('layouts.main')
 
 @section('container')
-  <h2> {{ $data->title }}</h2>
-  <h5> <a href="#" class="text-decoration-none">{{ $data->user->name }}</a></h5>
+  <h2> {{ $datax->title }}</h2>
+  <h5> <a href="/authors/{{ $datax->author->id }}" class="text-decoration-none">{{ $datax->author->name }}</a></h5>
   {{-- pemanggilan data agar bisa mengikuti format HTML --}}
-  {!! $data->body !!}
+  {!! $datax->body !!}
 </article>
-
-<a href="/user"> Back to User</a>
+<br><br>
+<a href="/data"> Back to Data List</a>
 @endsection

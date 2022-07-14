@@ -7,6 +7,8 @@ use App\Http\Controllers\DataController;
 use App\Models\Datas;
 //untuk category
 use App\Models\Category;
+//untuk User
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,22 +55,30 @@ Route::get('/user', function () {
 */
 
 //Halaman Post - tutorial upnas
-Route::get('/user', [DataController::class, 'index']);
+Route::get('/data', [DataController::class, 'index']);
 
 // Halaman single post - tutorial unpas
 // Route::get('/user/{slug}', [DataController::class, 'show']);
 //----
 // mengirimkan rute '/{data:slug} ke controller(Data) dengan fungsi show
-Route::get('/user/{data:slug}', [DataController::class, 'show']);
+Route::get('/data/{data:slug}', [DataController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 
-
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('category', [
-        'title' => $category->name,
+        'title' => 'category',
         'datax' => $category->datas,
         'category' => $category->name
+    ]);
+});
+
+Route::get('/authors/{author:username}', function (User $author) {
+
+    return view('category', [
+        'title' => 'datalist',
+        'datax' => $author->datas,
+        'category' => $author->name
     ]);
 });
 

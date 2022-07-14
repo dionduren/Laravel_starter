@@ -13,8 +13,9 @@ class DataController extends Controller
     public function index()
     {
         return view('User', [
-            "title" => "User",
-            "data"  => Datas::all()
+            "title" => "Data",
+            // "data"  => Datas::all()
+            "datax"  => Datas::latest()->get()
         ]);
     }
 
@@ -27,7 +28,7 @@ class DataController extends Controller
             [
                 "title" => "Single Data",
                 // "data" => Datas::find($slug),
-                "data" => $data
+                "datax" => $data
             ]
         );
     }
