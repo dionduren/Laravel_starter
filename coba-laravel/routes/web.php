@@ -1,16 +1,15 @@
 <?php
 //untuk [DataController::class, 'index']
 
+//untuk datas:all();
+use Illuminate\Support\Facades\Route;
+//untuk category
+use App\Http\Controllers\DataController;
+//untuk User
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DataController;
-//untuk datas:all();
-use App\Models\Datas;
-//untuk category
-use App\Models\Category;
-//untuk User
-use App\Models\User;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 
 
@@ -52,3 +51,6 @@ Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::get('/authors', [AuthorController::class, 'index']);
 // Route::get('/authors/{author:username}', [AuthorController::class, 'show']);
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
