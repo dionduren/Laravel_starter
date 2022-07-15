@@ -48,7 +48,7 @@ Route::get('/data', [DataController::class, 'index']);
 Route::get('/data/{data:slug}', [DataController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
+// Route::get('/categories/{category:slug}', [CategoryController::class, 'show']); 
 
 Route::get('/authors', [AuthorController::class, 'index']);
-Route::get('/authors/{author:username}', [AuthorController::class, 'show']);
+// Route::get('/authors/{author:username}', [AuthorController::class, 'show']);

@@ -10,11 +10,11 @@
       <img src="https://source.unsplash.com/1200x400/?{{ $datax->category->name }}" alt="{{ $datax->category->name }}" class="img-fluid">
       <h5> 
         By 
-          <a href="/authors/{{ $datax->author->username }}" class="text-decoration-none">
+          <a href="/data?author={{ $datax->author->username }}" class="text-decoration-none">
             {{ $datax->author->name }}
           </a>
         in
-          <a href="/categories/{{ $datax->category->slug }}" class="text-decoration-none">
+          <a href="/data?category={{ $datax->category->slug }}" class="text-decoration-none">
             {{ $datax->category->name }}
           </a>
       </h5>    

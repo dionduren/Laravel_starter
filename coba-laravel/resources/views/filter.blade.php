@@ -12,7 +12,7 @@
             
                 {{-- Category --}}
                     <?php if ($title === 'Category') { ?>
-                        <a href="/categories/{{ $file->slug }}" class="text-decoration-none text-white"> 
+                        <a href="/data?category={{ $file->slug }}" class="text-decoration-none text-white"> 
                             <div class="card bg-dark text-white">
                                 <img src="https://source.unsplash.com/300x200/?{{ $file->name }}" class="card-img" alt="{{ $file->name }}">
                                 <div class="card-img-overlay d-flex align-items-center p-0">
@@ -25,7 +25,7 @@
                     <?php } 
                     // Author
                     else if ($title === 'Author') { ?>
-                        <a href="/authors/{{ $file->username }}" class="text-decoration-none text-white">     
+                        <a href="/data?author={{ $file->username }}" class="text-decoration-none text-white">     
                             <div class="card bg-dark text-white">
                                 <img src="https://source.unsplash.com/300x200/?Author" class="card-img" alt="{{ $file->name }}">
                                 <div class="card-img-overlay d-flex align-items-center p-0">
