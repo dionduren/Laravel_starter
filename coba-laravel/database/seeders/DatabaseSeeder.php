@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Category;
-use App\Models\Datas;
+use App\Models\Data;
 
 class DatabaseSeeder extends Seeder
 {
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'design'
         ]);
 
-        Datas::factory(20)->create();
+        Data::factory(20)->create();
 
         // Datas::create([
         //     'title' => 'Judul Pertama',

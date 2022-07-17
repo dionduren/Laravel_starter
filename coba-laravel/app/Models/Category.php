@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Data;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,8 +12,8 @@ class Category extends Model
     // protected $fillable = ['name', 'slug'];
     protected $guarded = ['id'];
 
-    public function datas()
+    public function data()
     {
-        return $this->hasMany(Datas::class);
+        return $this->hasMany(Data::class);
     }
 }

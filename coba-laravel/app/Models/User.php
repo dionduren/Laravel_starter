@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Data;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,8 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function datas()
+    public function data()
     {
-        return $this->hasMany(Datas::class);
+        return $this->hasMany(Data::class);
     }
 }
