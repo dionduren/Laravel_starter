@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
-// use Dflydev\DotAccessData\Data;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardDataController extends Controller
 {
@@ -29,7 +30,9 @@ class DashboardDataController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.datas.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -40,7 +43,7 @@ class DashboardDataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -91,5 +94,11 @@ class DashboardDataController extends Controller
     public function destroy(Data $datas)
     {
         //
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Data::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }
