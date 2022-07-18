@@ -44,8 +44,6 @@ class DashboardDataController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:data',
@@ -72,6 +70,10 @@ class DashboardDataController extends Controller
         // dd($datas);
         $dataz = Data::where('slug', $data->slug)->get();
 
+        if ($data->author->id !== auth()->user()->id) {
+            abort(403);
+        }
+
         return view('dashboard.datas.show', [
             'datax' => $dataz[0]
         ]);
@@ -83,9 +85,16 @@ class DashboardDataController extends Controller
      * @param  \App\Models\Datas  $datas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Data $datas)
+    public function edit(Data $data)
     {
-        //
+        if ($data->author->id !== auth()->user()->id) {
+            abort(403);
+        }
+
+        return view('dashboard.datas.edit', [
+            'data' => $data,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -95,20 +104,39 @@ class DashboardDataController extends Controller
      * @param  \App\Models\Datas  $datas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Data $datas)
+    public function update(Request $request, Data $data)
     {
-        //
+        $rules = ([
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            'body' => 'required'
+        ]);
+
+        if ($request->slug != $data->slug) {
+            $rules['slug'] = 'required|unique:data';
+        }
+
+        $validatedData = $request->validate($rules);
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 150));
+
+        Data::where('id', $data->id)
+            ->update($validatedData);
+
+        return redirect('/dashboard/data')->with('success', 'Post has been Updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Datas  $datas
+     * @param  \App\Models\Datas  $data
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Data $datas)
+    public function destroy(Data $data)
     {
-        //
+        Data::destroy($data->id);
+
+        return redirect('/dashboard/data')->with('success', 'Post has been deleted!');
     }
 
     public function checkSlug(Request $request)
