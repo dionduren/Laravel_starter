@@ -23,8 +23,16 @@
                 </form>
                 <br>
                 <br>
-                <img src="https://source.unsplash.com/1200x400/?{{ $datax->category->name }}"
-                    alt="{{ $datax->category->name }}" class="img-fluid">
+
+                @if ($datax->image)
+                    <div style="max-height: 350px; overflow:hidden; ">
+                        <img src="{{ asset('storage/' . $datax->image) }}" alt="{{ $datax->title }}" class="img-fluid">
+                    </div>
+                @else
+                    <img src="https://source.unsplash.com/1200x400/?{{ $datax->category->name }}"
+                        alt="{{ $datax->category->name }}" class="img-fluid">
+                @endif
+
 
                 <article class="my-3 fs-5">
                     {!! $datax->body !!}
