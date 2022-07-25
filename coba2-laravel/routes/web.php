@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Livewire\Multiform;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,4 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register', [Multiform::class, 'render']);
