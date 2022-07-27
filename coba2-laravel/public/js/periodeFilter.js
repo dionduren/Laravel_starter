@@ -2,6 +2,7 @@
 
 // Variabel untuk Periode dan Bulan Magang
 var option3 = {
+  '': 'Pilih Bulan Magang',
   '3a': 'Januari-Maret',
   '3b': 'April - Juni',
   '3c': 'Juli - September',
@@ -9,6 +10,7 @@ var option3 = {
 };
 
 var option6 = {
+  '': 'Pilih Bulan Magang',
   '6a': 'Januari - Juni',
   '6b': 'Juli - Desember'
 };
@@ -48,22 +50,23 @@ function addActivityItem6() {
 
 // bagian jenis pendidikan
 var mahasiswa = {
-  'd1': 'D1',
+  '': 'Pilih Tingkat Pendidikan',
   'd2': 'D2',
   'd3': 'D3',
   'd4': 'D4',
   's1': 'S1',
-  's2': 'S2',
-  's3': 'S3',
+  's2': 'S2'
 };
 
 var pelajar = {
+  '': 'Pilih Tingkat Pendidikan',
   'sma': 'SMA',
   'smk': 'SMK'
 };
 
 //bagian jenis institusi
 var kampus = {
+  '': 'Pilih Institusi',
   'mulawarman': 'Universitas Mulawarman',
   'ui': 'Universitas Indonesia',
   'itb': 'ITB',
@@ -73,32 +76,36 @@ var kampus = {
 };
 
 var sekolahSMA = {
+  '': 'Pilih Institusi',
   'a': 'SMA A',
   'b': 'SMA B',
   'c': 'SMA C'
 };
 
 var sekolahSMK = {
+  '': 'Pilih Institusi',
   'd': 'SMK D',
   'e': 'SMK E',
   'f': 'SMK F'
 };
 
 //bagian jurusan
-var jurKampus = {
-  'a': 'Teknik A',
-  'b': 'Teknik B',
-  'c': 'Ilmu C',
-  'd': 'Lainnya'
-};
+// var jurKampus = {
+//   'a': 'Teknik A',
+//   'b': 'Teknik B',
+//   'c': 'Ilmu C',
+//   'd': 'Lainnya'
+// };
 
 var jurSMA = {
+  '': 'Pilih Jurusan',
   'ipa': 'IPA',
   'ips': 'IPS',
   'bahasa': 'Bahasa'
 };
 
 var jurSMK = {
+  '': 'Pilih Jurusan',
   'tkj': 'Teknik Komputer dan Jaringan',
   'multimedia': 'Desain Grafis / Multimedia',
   'mesin': 'Teknik Pemesinan',
@@ -109,22 +116,14 @@ var selectPendidikan = document.getElementById("tipependidikan");
 var selectTingkat = document.getElementById("tingkatpendidikan");
 var selectInstitusi = document.getElementById("institusi");
 var selectJurusan = document.getElementById("jurusan");
+var i;
 
 // Event Listener untuk mengecek apakah Kategori Pendidikan Berubah
 selectPendidikan.addEventListener("change", function () {
   var i;
 
-  // DELETE OPTION
-  //menghapus option tingkat pendidikan
-  var tingkatLength = selectTingkat.options.length - 1;
-  for (i = tingkatLength; i >= 0; i--) {
-    selectTingkat.remove(i);
-  }
-  //menghapus option institusi 
-  var institusiLength = selectInstitusi.options.length - 1;
-  for (i = institusiLength; i >= 0; i--) {
-    selectInstitusi.remove(i);
-  }
+  hapusInstitusi();
+  hapusTingkat();
 
   // ADD OPTION
   //menjalankan fungsi bila kondisi memenuhi
@@ -138,18 +137,6 @@ selectPendidikan.addEventListener("change", function () {
 
 // Event Listener untuk mengecek apakah Tingkat Pendidikan Berubah
 selectTingkat.addEventListener("change", function () {
-  var i;
-  //menghapus option tingkat pendidikan
-  var jurusanLength = selectJurusan.options.length - 1;
-  for (i = jurusanLength; i >= 0; i--) {
-    selectJurusan.remove(i);
-  }
-  //menghapus option institusi 
-  var institusiLength = selectInstitusi.options.length - 1;
-  for (i = institusiLength; i >= 0; i--) {
-    selectInstitusi.remove(i);
-  }
-
   //menjalankan fungsi bila kondisi memenuhi
   if (selectTingkat.value == "sma") {
     addActivityItemSMA();
@@ -162,13 +149,8 @@ selectTingkat.addEventListener("change", function () {
 function addActivityItemMahasiswa() {
   // Memunculkan Fakultas bila sebelumnya memilih Siswa sebagai kategori pendidikan
   document.getElementById("divFakultas").style.display = 'flex';
-
-  // DELETE OPTION
-  //menghapus option jurusan 
-  var jurusanLength = selectJurusan.options.length - 1;
-  for (i = jurusanLength; i >= 0; i--) {
-    selectJurusan.remove(i);
-  }
+  document.getElementById("divJurusan").style.display = 'none';
+  hapusJurusan();
 
   // ADD OPTION
   //mengisi opsi tingkat pendidikan
@@ -181,13 +163,17 @@ function addActivityItemMahasiswa() {
     selectInstitusi.options[selectInstitusi.length] = new Option(kampus[index], index);
   }
 
-  //mengisi opsi jurusan
-  for (index in jurKampus) {
-    selectJurusan.options[selectJurusan.length] = new Option(jurKampus[index], index);
-  }
+  // //mengisi opsi jurusan
+  // for (index in jurKampus) {
+  //   selectJurusan.options[selectJurusan.length] = new Option(jurKampus[index], index);
+  // }
 }
 
 function addActivityItemPelajar() {
+  document.getElementById("divJurusan").style.display = 'flex';
+  document.getElementById("divFakultas").style.display = 'none';
+  hapusJurusan();
+
   for (index in pelajar) {
     selectTingkat.options[selectTingkat.length] = new Option(pelajar[index], index);
   }
@@ -196,10 +182,16 @@ function addActivityItemPelajar() {
     selectInstitusi.options[selectInstitusi.length] = new Option(sekolahSMA[index], index);
   }
 
-  document.getElementById("divFakultas").style.display = 'none';
+  //mengisi opsi jurusan
+  for (index in jurSMA) {
+    selectJurusan.options[selectJurusan.length] = new Option(jurSMA[index], index);
+  }
 }
 
 function addActivityItemSMA() {
+  hapusJurusan();
+  hapusInstitusi();
+
   //mengisi opsi institusi
   for (index in sekolahSMA) {
     selectInstitusi.options[selectInstitusi.length] = new Option(sekolahSMA[index], index);
@@ -212,6 +204,9 @@ function addActivityItemSMA() {
 }
 
 function addActivityItemSMK() {
+  hapusJurusan();
+  hapusInstitusi();
+
   //mengisi opsi institusi
   for (index in sekolahSMK) {
     selectInstitusi.options[selectInstitusi.length] = new Option(sekolahSMK[index], index);
@@ -220,5 +215,30 @@ function addActivityItemSMK() {
   //mengisi opsi jurusan
   for (index in jurSMK) {
     selectJurusan.options[selectJurusan.length] = new Option(jurSMK[index], index);
+  }
+}
+
+// DELETE OPTION
+//menghapus option tingkat pendidikan
+function hapusTingkat() {
+  var tingkatLength = selectTingkat.options.length - 1;
+  for (i = tingkatLength; i >= 0; i--) {
+    selectTingkat.remove(i);
+  }
+}
+
+//menghapus option tingkat pendidikan
+function hapusJurusan() {
+  var jurusanLength = selectJurusan.options.length - 1;
+  for (i = jurusanLength; i >= 0; i--) {
+    selectJurusan.remove(i);
+  }
+}
+
+//menghapus option institusi
+function hapusInstitusi() {
+  var institusiLength = selectInstitusi.options.length - 1;
+  for (i = institusiLength; i >= 0; i--) {
+    selectInstitusi.remove(i);
   }
 }

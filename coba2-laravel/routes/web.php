@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Livewire\Multiform;
@@ -31,4 +32,5 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/register', [Multiform::class, 'render']);
+Route::get('/register', [FormUserController::class, 'create'])->middleware('guest');
+Route::post('/register', [FormUserController::class, 'store']);
