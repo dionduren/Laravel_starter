@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('form_users', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id');
             $table->string('tahun');
             $table->string('periode');
             $table->string('bulan');
@@ -39,10 +38,10 @@ return new class extends Migration
             $table->date('tanggalpengajuan');
             $table->string('peminatan');
             $table->string('departemen');
-            $table->string('docPermohonan');
-            $table->string('docTranskrip');
-            $table->string('docProposal');
-            $table->string('imgFoto');
+            $table->string('docPermohonan')->nullable();
+            $table->string('docTranskrip')->nullable();
+            $table->string('docProposal')->nullable();
+            $table->string('imgFoto')->nullable();
             $table->timestamps();
         });
     }

@@ -20,26 +20,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <div class="" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+            <div class="">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="loginModal">Login</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
                         <div class="modal-body">
-                            <form method="POST" action="/login">
+                            <form method="post" action="/login">
                                 @csrf
 
                                 <div class="form-group row my-2">
-                                    <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                                    <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                            name="username" value="{{ old('username') }}" autofocus required
-                                            autocomplete="username" autofocus>
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                            name="email" value="{{ old('email') }}" autofocus required
+                                            autocomplete="email" autofocus>
 
-                                        @error('username')
+                                        @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -63,27 +59,10 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-md-6 offset-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                                {{ old('remember') ? 'checked' : '' }}>
-
-                                            <label class="form-check-label" for="remember">
-                                                Ingat saya
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                    <div class="col-md-8 offset-md-4 mx-auto">
+                                        <button type="submit" class="btn btn-primary float-end">
                                             Login
-                                        </button>
-
-                                        <button type="submit" class="btn btn-secondary">
-                                            Lupa Password?
                                         </button>
                                     </div>
                                     <small class="d-block text-center mt-3">Belum punya akun? <a href="/register">Daftar

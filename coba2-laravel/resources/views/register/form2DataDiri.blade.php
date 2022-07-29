@@ -213,7 +213,7 @@
 
             <div class="row py-2 align-items-center">
                 <div class="col-3">
-                    <label for="warganegara">--Kewarganegaraan--</label>
+                    <label for="warganegara">Kewarganegaraan</label>
                 </div>
                 <div class="col-auto">
                     :

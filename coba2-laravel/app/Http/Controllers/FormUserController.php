@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\formUser;
+use Illuminate\Support\Str;
+use Illuminate\Routing\Controller;
+use App\Http\Controllers\UserController;
 use App\Http\Requests\StoreformUserRequest;
 use App\Http\Requests\UpdateformUserRequest;
+use App\Models\User;
+use App\Models\kuotaTahun;
 
 class FormUserController extends Controller
 {
@@ -25,7 +30,11 @@ class FormUserController extends Controller
      */
     public function create()
     {
-        return view('register.multiform');
+        // $kuotaPeriode = kuotaTahun::all()->only(['id', 'tahunperiode', 'kuota']);
+
+        return view('register.multiform', [
+            'kuota' => kuotaTahun::all()
+        ]);
     }
 
     /**
@@ -90,9 +99,21 @@ class FormUserController extends Controller
             dd($e->getMessage(), $validatedData);
         }
 
+        $generatedPassword = Str::random(6);
+
         formUser::create($validatedData);
 
-        return redirect('/login')->with('success', 'Pendaftaran berhasil! Silahkan menunggu cek inbox Email untuk melakukan Konfirmasi');
+        User::create([
+            'name' => $validatedData['nama'],
+            'email' => $validatedData['email1'],
+            'password' => bcrypt($generatedPassword),
+            'userform_id' => formUser::where('email1', $validatedData['email1'])->first()->id,
+            'isAdmin' => false,
+            //perlu dihapus setelah done
+            'email_verified_at' => 'datetime',
+        ]);
+
+        return redirect('/login')->with('success', 'Pendaftaran berhasil! Silahkan menunggu cek inbox Email anda (' . $validatedData['email1'] . ') untuk melakukan Konfirmasi. Password anda adalah = ' . $generatedPassword);
     }
 
     /**

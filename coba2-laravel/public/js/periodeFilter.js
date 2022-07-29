@@ -1,5 +1,4 @@
 // ------- BAGIAN PERIODE MAGANG -----------
-
 // Variabel untuk Periode dan Bulan Magang
 var option3 = {
   '': 'Pilih Bulan Magang',
@@ -15,11 +14,20 @@ var option6 = {
   '6b': 'Juli - Desember'
 };
 
+var selectTahun = document.getElementById('tahun');
 var selectPeriode = document.getElementById("periode");
 var selectBulan = document.getElementById("bulan");
 
 // Aktifitas Perubahan pada opsi Periode
 // Mengubah opsi pada bagian bulan
+
+selectTahun.addEventListener("change", function() {
+var tahunValue = selectTahun.value;
+
+
+
+});
+
 selectPeriode.addEventListener("change", function () {
   var i, L = selectBulan.options.length - 1;
   for (i = L; i >= 0; i--) {

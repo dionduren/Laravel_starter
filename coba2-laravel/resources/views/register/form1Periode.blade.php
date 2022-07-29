@@ -16,6 +16,15 @@
                     @endfor
                 </select>
             </div>
+            <div class="col-auto">
+                Sisa Kuota
+            </div>
+            <div class="col-auto">
+                :
+            </div>
+            <div class="col-auto">
+                <input type="text" disabled id="kuotaPeriode">
+            </div>
         </div>
         <div class="row py-2 align-items-center">
             <div style="flex: 0 0 auto;width: 12.66%;">

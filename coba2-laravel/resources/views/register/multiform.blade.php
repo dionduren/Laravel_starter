@@ -74,6 +74,10 @@
         </div>
     </header>
     @push('scriptRegistration')
+        <script>
+            var jsonPeriode = {!! json_encode($kuota) !!};
+            
+        </script>
         <script src="js/periodeFilter.js"></script>
         <script src="js/multipage.js"></script>
     @endpush
